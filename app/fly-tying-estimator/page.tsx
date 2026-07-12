@@ -13,10 +13,19 @@ interface MaterialItem {
   usagePerFly: number;
 }
 
+interface CalculatedMaterial extends MaterialItem {
+  costPerUnit: number;
+  costPerFly: number;
+  totalUsage: number;
+  totalCost: number;
+  remainingMaterials: number;
+  willNeedMore: boolean;
+}
+
 interface CalculationResult {
   totalCost: number;
   costPerFly: number;
-  materialsPerFly: MaterialItem[];
+  materialsPerFly: CalculatedMaterial[];
   totalMaterialsUsed: number;
 }
 
@@ -71,11 +80,11 @@ export default function FlyTyingEstimator() {
   // Calculate costs
   const calculateCosts = () => {
     // Calculate cost per fly for each material
-    const calculatedItems = items.map(item => {
+    const calculatedItems: CalculatedMaterial[] = items.map(item => {
       const costPerUnit = item.cost / item.quantity;
       const costPerFly = costPerUnit * item.usagePerFly;
       const totalUsage = item.usagePerFly * numberOfFlies;
-      const totalCost = (costPerUnit * totalUsage);
+      const totalCost = costPerUnit * totalUsage;
       
       return {
         ...item,
@@ -96,7 +105,7 @@ export default function FlyTyingEstimator() {
     setResults({
       totalCost: Number(totalCost.toFixed(2)),
       costPerFly: Number(costPerFly.toFixed(2)),
-      materialsPerFly: calculatedItems as any,
+      materialsPerFly: calculatedItems,
       totalMaterialsUsed: Number(totalMaterialsUsed.toFixed(2)),
     });
   };
@@ -209,85 +218,88 @@ export default function FlyTyingEstimator() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredItems.map((item) => (
-                      <tr key={item.id} className="border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
-                        <td className="py-2 px-2">
-                          <input
-                            type="text"
-                            value={item.name}
-                            onChange={(e) => updateItem(item.id, "name", e.target.value)}
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
-                            placeholder="Material name"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <select
-                            value={item.type}
-                            onChange={(e) => updateItem(item.id, "type", e.target.value)}
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
-                          >
-                            {typeOptions.filter(opt => opt.value !== "all").map(option => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="number"
-                            value={item.cost}
-                            onChange={(e) => updateItem(item.id, "cost", Number(e.target.value))}
-                            min="0"
-                            step="0.01"
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="number"
-                            value={item.quantity}
-                            onChange={(e) => updateItem(item.id, "quantity", Number(e.target.value))}
-                            min="0"
-                            step="0.01"
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="text"
-                            value={item.unit}
-                            onChange={(e) => updateItem(item.id, "unit", e.target.value)}
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
-                            placeholder="unit"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="number"
-                            value={item.usagePerFly}
-                            onChange={(e) => updateItem(item.id, "usagePerFly", Number(e.target.value))}
-                            min="0"
-                            step="0.01"
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
-                          />
-                        </td>
-                        <td className="py-2 px-2 text-right text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                          ${(results.materialsPerFly.find(i => i.id === item.id)?.totalCost || 0).toFixed(2)}
-                        </td>
-                        <td className="py-2 px-2 text-center">
-                          <button
-                            onClick={() => removeItem(item.id)}
-                            className="text-red-500 hover:text-red-700 transition-colors"
-                            aria-label="Remove item"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {filteredItems.map((item) => {
+                      const calculatedItem = results.materialsPerFly.find(i => i.id === item.id);
+                      return (
+                        <tr key={item.id} className="border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
+                          <td className="py-2 px-2">
+                            <input
+                              type="text"
+                              value={item.name}
+                              onChange={(e) => updateItem(item.id, "name", e.target.value)}
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
+                              placeholder="Material name"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <select
+                              value={item.type}
+                              onChange={(e) => updateItem(item.id, "type", e.target.value as MaterialItem["type"])}
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
+                            >
+                              {typeOptions.filter(opt => opt.value !== "all").map(option => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="number"
+                              value={item.cost}
+                              onChange={(e) => updateItem(item.id, "cost", Number(e.target.value))}
+                              min="0"
+                              step="0.01"
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="number"
+                              value={item.quantity}
+                              onChange={(e) => updateItem(item.id, "quantity", Number(e.target.value))}
+                              min="0"
+                              step="0.01"
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="text"
+                              value={item.unit}
+                              onChange={(e) => updateItem(item.id, "unit", e.target.value)}
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
+                              placeholder="unit"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="number"
+                              value={item.usagePerFly}
+                              onChange={(e) => updateItem(item.id, "usagePerFly", Number(e.target.value))}
+                              min="0"
+                              step="0.01"
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
+                            />
+                          </td>
+                          <td className="py-2 px-2 text-right text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                            ${(calculatedItem?.totalCost || 0).toFixed(2)}
+                          </td>
+                          <td className="py-2 px-2 text-center">
+                            <button
+                              onClick={() => removeItem(item.id)}
+                              className="text-red-500 hover:text-red-700 transition-colors"
+                              aria-label="Remove item"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
                 {filteredItems.length === 0 && (
@@ -326,12 +338,12 @@ export default function FlyTyingEstimator() {
                 Material Breakdown
               </h3>
               <div className="space-y-3 max-h-[300px] overflow-y-auto">
-                {results.materialsPerFly.map((item: any) => (
+                {results.materialsPerFly.map((item) => (
                   <div key={item.id} className="border-b border-zinc-100 dark:border-zinc-800 pb-2 last:border-0">
                     <div className="flex justify-between text-sm">
                       <span className="text-zinc-600 dark:text-zinc-400">{item.name}</span>
                       <span className="font-medium text-black dark:text-white">
-                        ${item.totalCost?.toFixed(2) || "0.00"}
+                        ${item.totalCost.toFixed(2)}
                       </span>
                     </div>
                     <div className="flex justify-between text-xs text-zinc-500 dark:text-zinc-400 mt-1">
