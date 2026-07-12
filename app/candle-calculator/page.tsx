@@ -12,12 +12,17 @@ interface CostItem {
   type: "wax" | "fragrance" | "container" | "wick" | "packaging" | "other";
 }
 
+interface CalculatedItem extends CostItem {
+  costPerCandle: number;
+  totalCost: number;
+}
+
 interface CalculationResult {
   totalCost: number;
   costPerUnit: number;
   profitMargin: number;
   sellingPrice: number;
-  items: CostItem[];
+  items: CalculatedItem[];
 }
 
 export default function CandleCalculator() {
@@ -74,7 +79,7 @@ export default function CandleCalculator() {
   // Calculate costs
   const calculateCosts = () => {
     // Calculate cost per item based on usage
-    const calculatedItems = items.map(item => {
+    const calculatedItems: CalculatedItem[] = items.map(item => {
       let costPerCandle = 0;
       
       switch(item.type) {
@@ -94,15 +99,17 @@ export default function CandleCalculator() {
           costPerCandle = 0;
       }
       
+      const totalCost = costPerCandle * numberOfCandles;
+      
       return {
         ...item,
         costPerCandle: Number(costPerCandle.toFixed(2)),
-        totalCost: Number((costPerCandle * numberOfCandles).toFixed(2)),
+        totalCost: Number(totalCost.toFixed(2)),
       };
     });
 
     // Calculate totals
-    const totalCost = calculatedItems.reduce((sum, item) => sum + (item.totalCost || 0), 0);
+    const totalCost = calculatedItems.reduce((sum, item) => sum + item.totalCost, 0);
     const costPerUnit = totalCost / numberOfCandles;
     const sellingPrice = costPerUnit / (1 - (desiredProfitMargin / 100));
     const profitMargin = ((sellingPrice - costPerUnit) / sellingPrice) * 100;
@@ -112,7 +119,7 @@ export default function CandleCalculator() {
       costPerUnit: Number(costPerUnit.toFixed(2)),
       profitMargin: Number(profitMargin.toFixed(1)),
       sellingPrice: Number(sellingPrice.toFixed(2)),
-      items: calculatedItems as any,
+      items: calculatedItems,
     });
   };
 
@@ -240,78 +247,81 @@ export default function CandleCalculator() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredItems.map((item) => (
-                      <tr key={item.id} className="border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
-                        <td className="py-2 px-2">
-                          <input
-                            type="text"
-                            value={item.name}
-                            onChange={(e) => updateItem(item.id, "name", e.target.value)}
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
-                            placeholder="Item name"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <select
-                            value={item.type}
-                            onChange={(e) => updateItem(item.id, "type", e.target.value)}
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
-                          >
-                            {typeOptions.filter(opt => opt.value !== "all").map(option => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="number"
-                            value={item.cost}
-                            onChange={(e) => updateItem(item.id, "cost", Number(e.target.value))}
-                            min="0"
-                            step="0.01"
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="number"
-                            value={item.quantity}
-                            onChange={(e) => updateItem(item.id, "quantity", Number(e.target.value))}
-                            min="0"
-                            step="0.01"
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
-                          />
-                        </td>
-                        <td className="py-2 px-2">
-                          <input
-                            type="text"
-                            value={item.unit}
-                            onChange={(e) => updateItem(item.id, "unit", e.target.value)}
-                            className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
-                            placeholder="unit"
-                          />
-                        </td>
-                        <td className="py-2 px-2 text-right text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                          ${(results.items.find(i => i.id === item.id)?.costPerCandle || 0).toFixed(2)}
-                        </td>
-                        <td className="py-2 px-2 text-right text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                          ${(results.items.find(i => i.id === item.id)?.totalCost || 0).toFixed(2)}
-                        </td>
-                        <td className="py-2 px-2 text-center">
-                          <button
-                            onClick={() => removeItem(item.id)}
-                            className="text-red-500 hover:text-red-700 transition-colors"
-                            aria-label="Remove item"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {filteredItems.map((item) => {
+                      const calculatedItem = results.items.find(i => i.id === item.id);
+                      return (
+                        <tr key={item.id} className="border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
+                          <td className="py-2 px-2">
+                            <input
+                              type="text"
+                              value={item.name}
+                              onChange={(e) => updateItem(item.id, "name", e.target.value)}
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
+                              placeholder="Item name"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <select
+                              value={item.type}
+                              onChange={(e) => updateItem(item.id, "type", e.target.value as CostItem["type"])}
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
+                            >
+                              {typeOptions.filter(opt => opt.value !== "all").map(option => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="number"
+                              value={item.cost}
+                              onChange={(e) => updateItem(item.id, "cost", Number(e.target.value))}
+                              min="0"
+                              step="0.01"
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="number"
+                              value={item.quantity}
+                              onChange={(e) => updateItem(item.id, "quantity", Number(e.target.value))}
+                              min="0"
+                              step="0.01"
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm text-right focus:ring-1 focus:ring-blue-500"
+                            />
+                          </td>
+                          <td className="py-2 px-2">
+                            <input
+                              type="text"
+                              value={item.unit}
+                              onChange={(e) => updateItem(item.id, "unit", e.target.value)}
+                              className="w-full px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded bg-white dark:bg-zinc-800 text-black dark:text-white text-sm focus:ring-1 focus:ring-blue-500"
+                              placeholder="unit"
+                            />
+                          </td>
+                          <td className="py-2 px-2 text-right text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                            ${(calculatedItem?.costPerCandle || 0).toFixed(2)}
+                          </td>
+                          <td className="py-2 px-2 text-right text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                            ${(calculatedItem?.totalCost || 0).toFixed(2)}
+                          </td>
+                          <td className="py-2 px-2 text-center">
+                            <button
+                              onClick={() => removeItem(item.id)}
+                              className="text-red-500 hover:text-red-700 transition-colors"
+                              aria-label="Remove item"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
                 {filteredItems.length === 0 && (
@@ -384,12 +394,12 @@ export default function CandleCalculator() {
               <h3 className="text-lg font-semibold text-black dark:text-white mb-4">
                 Cost Breakdown
               </h3>
-              <div className="space-y-2">
-                {results.items.map((item: any) => (
+              <div className="space-y-2 max-h-[300px] overflow-y-auto">
+                {results.items.map((item) => (
                   <div key={item.id} className="flex justify-between text-sm">
                     <span className="text-zinc-600 dark:text-zinc-400">{item.name}</span>
                     <span className="font-medium text-black dark:text-white">
-                      ${item.totalCost?.toFixed(2) || "0.00"}
+                      ${item.totalCost.toFixed(2)}
                     </span>
                   </div>
                 ))}
