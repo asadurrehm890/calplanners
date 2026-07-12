@@ -129,14 +129,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
                   <div className="group bg-white dark:bg-zinc-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                     <div className="relative h-32 bg-zinc-100 dark:bg-zinc-800">
-                      <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
-                        {relatedPost.title.charAt(0)}
+                      <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold p-5">
+                        {relatedPost.title}
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="font-semibold text-black dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                      {/* <h3 className="font-semibold text-black dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                         {relatedPost.title}
-                      </h3>
+                      </h3> */}
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
                         {relatedPost.readTime}
                       </p>
