@@ -40,7 +40,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center py-2">
             <div className="ad-banner">
-             <Script async="async" data-cfasync="false" src="https://pl30350904.effectivecpmnetwork.com/b7f2477a65daaf396ef8b5a4c3c1153d/invoke.js"></Script>
+             <Script async data-cfasync="false" src="https://pl30350904.effectivecpmnetwork.com/b7f2477a65daaf396ef8b5a4c3c1153d/invoke.js"></Script>
 <div id="container-b7f2477a65daaf396ef8b5a4c3c1153d"></div>
 
             </div>
