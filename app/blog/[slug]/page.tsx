@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getPostBySlug, getRelatedPosts, blogPosts } from "@/app/data/posts";
+import { Metadata } from "next";
 
 // Generate static params for all posts
 export async function generateStaticParams() {
@@ -11,19 +12,60 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for each post
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  
+
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: 'Post Not Found | CalPlanners',
+      description: 'The requested blog post could not be found.',
+      robots: { index: false },
     };
   }
 
+  const baseUrl = 'https://calplanners.online';
+  const postUrl = `${baseUrl}/blog/${post.slug}`;
+
+  // Extract keywords from tags
+  const keywords = post.tags.join(', ');
+
   return {
-    title: post.title,
+    title: `${post.title} | CalPlanners`,
     description: post.excerpt,
+    keywords: `${keywords}, ${post.author}, calculator guide, planning tool`,
+    authors: [{ name: post.author }],
+    openGraph: {
+      title: `${post.title} | CalPlanners`,
+      description: post.excerpt,
+      url: postUrl,
+      type: 'article',
+      publishedTime: new Date(post.date).toISOString(),
+      authors: [post.author],
+      tags: post.tags,
+      images: [
+        {
+          url: post.image || 'https://calplanners.online/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} | CalPlanners`,
+      description: post.excerpt,
+      images: [post.image || 'https://calplanners.online/og-image.jpg'],
+      creator: '@calplanners',
+    },
+    alternates: {
+      canonical: postUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

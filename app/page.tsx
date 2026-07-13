@@ -1,5 +1,19 @@
 import PostCard from "@/app/components/PostCard";
 import { blogPosts } from "@/app/data/posts";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Free Online Calculators for Business & Crafting',
+  description: 'Discover free tools to calculate candle costs, fly tying materials, meeting expenses, equipment ROI, protein intake, weight loss timeline, and more. Start planning smarter today.',
+  openGraph: {
+    title: 'Free Online Calculators for Business & Crafting | CalPlanners',
+    description: 'Discover free tools to calculate candle costs, fly tying materials, meeting expenses, equipment ROI, and more.',
+    url: 'https://calplanners.online',
+  },
+  alternates: {
+    canonical: 'https://calplanners.online',
+  },
+};
 
 export default function Home() {
   return (
