@@ -40,9 +40,26 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center py-2">
             <div className="ad-banner">
-             <Script async data-cfasync="false" src="https://pl30350904.effectivecpmnetwork.com/b7f2477a65daaf396ef8b5a4c3c1153d/invoke.js"></Script>
-<div id="container-b7f2477a65daaf396ef8b5a4c3c1153d"></div>
-
+              <Script
+                id="adsterra-banner-header"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    atOptions = {
+                      'key' : 'dacf6ccd7e48e8970aee47b8deee9514',
+                      'format' : 'iframe',
+                      'height' : 90,
+                      'width' : 728,
+                      'params' : {}
+                    };
+                  `,
+                }}
+              />
+              <Script
+                src="https://www.highperformanceformat.com/dacf6ccd7e48e8970aee47b8deee9514/invoke.js"
+                strategy="afterInteractive"
+                async
+              />
             </div>
           </div>
         </div>
