@@ -87,8 +87,7 @@ export default function RootLayout({
             gtag('config', 'G-XJL4T4L5EG');
           `}
         </Script>
-        <script src="https://pl30350903.effectivecpmnetwork.com/3d/5c/86/3d5c86446e20eeae204973d1dc2695fd.js"></script>
-
+       
       </head>
       <body className="min-h-full flex flex-col">
         <Header />

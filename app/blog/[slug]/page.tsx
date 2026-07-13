@@ -162,35 +162,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </article>
 
         
-{/* Ad Banner - Above Navbar */}
-      <div className="bg-gray-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center py-2">
-            <div className="ad-banner">
-              <Script
-                id="adsterra-banner-header"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    atOptions = {
-                      'key' : 'dacf6ccd7e48e8970aee47b8deee9514',
-                      'format' : 'iframe',
-                      'height' : 90,
-                      'width' : 728,
-                      'params' : {}
-                    };
-                  `,
-                }}
-              />
-              <Script
-                src="https://www.highperformanceformat.com/dacf6ccd7e48e8970aee47b8deee9514/invoke.js"
-                strategy="afterInteractive"
-                async
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+
 
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
