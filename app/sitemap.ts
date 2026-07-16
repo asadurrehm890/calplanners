@@ -84,6 +84,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
     changeFrequency: 'weekly' as const,
   },
+  {
+    slug: '/color-converter',
+    priority: 0.85,
+    changeFrequency: 'weekly' as const,
+  },
   ].map((calc) => ({
     url: `${baseUrl}${calc.slug}`,
     lastModified: new Date().toISOString(),

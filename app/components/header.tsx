@@ -33,6 +33,7 @@ export default function Header() {
   { href: "/weight-loss-timeline", label: "🎯 Weight Loss Timeline" },
   { href: "/gpa-calculator", label: "📚 GPA Calculator" },
   { href: "/word-counter", label: "📝 Word Counter" },
+  { href: "/color-converter", label: "🎨 Color Converter" },
 ];
 
   return (
