@@ -1686,7 +1686,140 @@ export const blogPosts: BlogPost[] = [
         </a>
       </div>
     `
-  }
+  },
+  {
+  id: 10,
+  title: "The Ultimate Guide to GPA: How to Calculate, Track, and Improve Your Grades",
+  excerpt: "Learn how to calculate your GPA, understand grade scales, and track your academic progress. Discover strategies to improve your grades and achieve your academic goals.",
+  image: "/gpa-blog.jpg",
+  date: "July 20, 2026",
+  readTime: "8 min read",
+  slug: "gpa-calculator-guide",
+  author: "Dr. Michael Chen",
+  authorImage: "/author-michael.jpg",
+  tags: ["GPA", "Education", "Academic", "Student Success"],
+  content: `
+    <h2>Introduction</h2>
+    <p>Your Grade Point Average (GPA) is one of the most important metrics in your academic journey. Whether you're applying for college, graduate school, or your first job, your GPA can open doors or close them. The <a href="/gpa-calculator">GPA Calculator</a> helps you track your progress, plan your semester, and set realistic academic goals.</p>
+
+    <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; border: 2px solid #e5e7eb;">
+      <h3 style="margin-top: 0;">📚 Try the Calculator Now</h3>
+      <p style="margin-bottom: 15px;">Calculate your semester and cumulative GPA, track your progress, and plan your academic goals.</p>
+      <a href="/gpa-calculator" style="display: inline-block; padding: 12px 30px; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+        Open Calculator →
+      </a>
+    </div>
+
+    <h2>What is GPA?</h2>
+    <p>GPA stands for Grade Point Average. It's a numerical representation of your academic performance, calculated by averaging your grades across all courses.</p>
+    
+    <ul>
+      <li><strong>Semester GPA:</strong> Your GPA for a single semester or term</li>
+      <li><strong>Cumulative GPA:</strong> Your GPA across all completed semesters</li>
+      <li><strong>Scale:</strong> Most US institutions use a 4.0 scale</li>
+    </ul>
+
+    <h2>Understanding the Grade Scale</h2>
+    <p>Most schools use the following grade scale:</p>
+    <ul>
+      <li><strong>A+ / A:</strong> 4.0 - Excellent</li>
+      <li><strong>A-:</strong> 3.7 - Very Good</li>
+      <li><strong>B+:</strong> 3.3 - Good</li>
+      <li><strong>B:</strong> 3.0 - Above Average</li>
+      <li><strong>B-:</strong> 2.7 - Slightly Above Average</li>
+      <li><strong>C+:</strong> 2.3 - Average</li>
+      <li><strong>C:</strong> 2.0 - Satisfactory</li>
+      <li><strong>C-:</strong> 1.7 - Below Average</li>
+      <li><strong>D:</strong> 1.0 - Poor</li>
+      <li><strong>F:</strong> 0.0 - Failing</li>
+    </ul>
+
+    <h2>Using the GPA Calculator</h2>
+    <p>Our <a href="/gpa-calculator">interactive calculator</a> makes GPA tracking simple:</p>
+
+    <h3>Step 1: Add Your Semesters</h3>
+    <ul>
+      <li>Each semester represents one academic term</li>
+      <li>Name each semester (e.g., "Fall 2025", "Spring 2026")</li>
+    </ul>
+
+    <h3>Step 2: Add Your Courses</h3>
+    <ul>
+      <li><strong>Course Name:</strong> The class name</li>
+      <li><strong>Credits:</strong> The credit hours for the course</li>
+      <li><strong>Grade:</strong> Your final letter grade</li>
+    </ul>
+
+    <h3>Step 3: Review Results</h3>
+    <p>The calculator provides:</p>
+    <ul>
+      <li><strong>Semester GPA:</strong> Your GPA for each term</li>
+      <li><strong>Cumulative GPA:</strong> Your overall GPA</li>
+      <li><strong>Total Credits:</strong> Completed credit hours</li>
+      <li><strong>Target GPA Planning:</strong> Credits needed to reach your goal</li>
+    </ul>
+
+    <div style="background: #dbeafe; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #2563eb;">
+      <h4 style="margin-top: 0;">💡 Pro Tip</h4>
+      <p style="margin-bottom: 0;">Use the target GPA feature to plan ahead! See exactly how many credits at a certain grade you need to reach your academic goals.</p>
+    </div>
+
+    <h2>Real-World Example</h2>
+    <p>Let's see how the calculator works for a typical student:</p>
+
+    <h3>Your Courses:</h3>
+    <ul>
+      <li><strong>Calculus I:</strong> 4 credits, Grade: A (4.0) → 16 grade points</li>
+      <li><strong>English 101:</strong> 3 credits, Grade: B+ (3.3) → 9.9 grade points</li>
+      <li><strong>History 101:</strong> 3 credits, Grade: A- (3.7) → 11.1 grade points</li>
+      <li><strong>Biology:</strong> 4 credits, Grade: B (3.0) → 12 grade points</li>
+    </ul>
+
+    <h3>Results:</h3>
+    <ul>
+      <li><strong>Total Credits:</strong> 14</li>
+      <li><strong>Total Grade Points:</strong> 49.0</li>
+      <li><strong>Semester GPA:</strong> 3.50</li>
+    </ul>
+
+    <h2>Tips for Improving Your GPA</h2>
+    <ul>
+      <li><strong>Start Strong:</strong> First-year grades matter significantly</li>
+      <li><strong>Focus on High-Credit Courses:</strong> They impact your GPA more</li>
+      <li><strong>Get Help Early:</strong> Tutoring, office hours, and study groups</li>
+      <li><strong>Retake Courses:</strong> Some schools allow grade replacement</li>
+      <li><strong>Balance Your Schedule:</strong> Mix challenging and easier courses</li>
+    </ul>
+
+    <h2>Common GPA Questions</h2>
+    <h3>What's a good GPA?</h3>
+    <ul>
+      <li><strong>3.5+:</strong> Excellent - competitive for top programs</li>
+      <li><strong>3.0-3.5:</strong> Good - meets most requirements</li>
+      <li><strong>2.5-3.0:</strong> Satisfactory - may need improvement for competitive programs</li>
+      <li><strong>Below 2.5:</strong> Needs significant improvement</li>
+    </ul>
+
+    <h3>How are plus/minus grades calculated?</h3>
+    <p>Different schools handle plus/minus differently. Some use them (A- = 3.7, B+ = 3.3), others don't. Always check your school's specific policy.</p>
+
+    <h3>Can I improve my GPA after graduation?</h3>
+    <p>Generally, no. Your GPA is calculated from your completed coursework. Some graduate programs consider post-baccalaureate coursework separately.</p>
+
+    <h2>Conclusion</h2>
+    <p>Your GPA is a powerful metric that can shape your academic and professional future. The <a href="/gpa-calculator">GPA Calculator</a> helps you understand where you stand and plan for where you want to go.</p>
+
+    <p>Ready to calculate your GPA? <a href="/gpa-calculator">Try the calculator now</a> and take control of your academic journey!</p>
+
+    <div style="background: #f0fdf4; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; border: 2px solid #bbf7d0;">
+      <h3 style="margin-top: 0; color: #15803d;">🎯 Start Tracking Your GPA Now</h3>
+      <p style="margin-bottom: 15px;">Calculate your GPA, track your progress, and achieve your academic goals!</p>
+      <a href="/gpa-calculator" style="display: inline-block; padding: 12px 30px; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+        📚 Calculate Now
+      </a>
+    </div>
+  `
+}
 
 ];
 
