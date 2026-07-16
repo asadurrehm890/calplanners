@@ -74,6 +74,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
       changeFrequency: 'monthly' as const,
     },
+    {
+    slug: '/gpa-calculator',
+    priority: 0.9,
+    changeFrequency: 'weekly' as const,
+  },
   ].map((calc) => ({
     url: `${baseUrl}${calc.slug}`,
     lastModified: new Date().toISOString(),
