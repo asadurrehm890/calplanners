@@ -21,17 +21,19 @@ export default function Header() {
   }, []);
 
   // Calculators list
-  const calculators = [
-    { href: "/candle-calculator", label: "🕯️ Candle Calculator" },
-    { href: "/fly-tying-estimator", label: "🎣 Fly Tying Estimator" },
-    { href: "/turtle-tank-calculator", label: "🐢 Turtle Tank Calculator" },
-    { href: "/fursuit-fur-calculator", label: "🦊 Fursuit Fur Calculator" },
-    { href: "/calligraphy-ink-calculator", label: "✒️ Calligraphy Ink Estimator" },
-    { href: "/equipment-roi-calculator", label: "📊 Equipment ROI Calculator" },
-    { href: "/meeting-cost-calculator", label: "💰 Meeting Cost Calculator" },
-    { href: "/protein-calculator", label: "💪 Protein Intake Calculator" },
-    { href: "/weight-loss-timeline", label: "🎯 Weight Loss Timeline" },
-  ];
+ const calculators = [
+  { href: "/candle-calculator", label: "🕯️ Candle Calculator" },
+  { href: "/fly-tying-estimator", label: "🎣 Fly Tying Estimator" },
+  { href: "/turtle-tank-calculator", label: "🐢 Turtle Tank Calculator" },
+  { href: "/fursuit-fur-calculator", label: "🦊 Fursuit Fur Calculator" },
+  { href: "/calligraphy-ink-calculator", label: "✒️ Calligraphy Ink Estimator" },
+  { href: "/equipment-roi-calculator", label: "📊 Equipment ROI Calculator" },
+  { href: "/meeting-cost-calculator", label: "💰 Meeting Cost Calculator" },
+  { href: "/protein-calculator", label: "💪 Protein Intake Calculator" },
+  { href: "/weight-loss-timeline", label: "🎯 Weight Loss Timeline" },
+  { href: "/gpa-calculator", label: "📚 GPA Calculator" },
+  { href: "/word-counter", label: "📝 Word Counter" },
+];
 
   return (
     <header className="bg-white dark:bg-black border-b border-zinc-200 dark:border-zinc-800">
