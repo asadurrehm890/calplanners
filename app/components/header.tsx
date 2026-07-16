@@ -149,7 +149,8 @@ export default function Header() {
           </div>
         )}
       </div>
-
+<Script async data-cfasync="false" src="https://pl30350904.effectivecpmnetwork.com/b7f2477a65daaf396ef8b5a4c3c1153d/invoke.js"></Script>
+<div id="container-b7f2477a65daaf396ef8b5a4c3c1153d"></div>
        
     </header>
   );
