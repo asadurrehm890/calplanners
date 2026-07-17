@@ -142,6 +142,24 @@ export default function WordCounterClient() {
   };
 
   return (
+    <>
+    <div className="bg-rose-50 dark:bg-rose-900/20 rounded-2xl p-6 mb-8 border border-rose-200 dark:border-rose-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    📝 What is the Word Counter?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool counts words, characters, sentences, paragraphs, and more. Essential for writers, students, content creators, and anyone working with text.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Type or paste your text, and the counter instantly shows word count, character count (with and without spaces), sentence count, reading time, and word frequency analysis.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A 500-word blog post takes approximately 2 minutes to read and contains about 2,800 characters. The word frequency analysis helps identify overused words.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -401,5 +419,6 @@ export default function WordCounterClient() {
         </div>
       </div>
     </div>
+    </>
   );
 }
