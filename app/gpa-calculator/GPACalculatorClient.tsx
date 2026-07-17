@@ -212,6 +212,24 @@ export default function GPACalculatorClient() {
   };
 
   return (
+    <>
+    <div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-2xl p-6 mb-8 border border-cyan-200 dark:border-cyan-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    📚 What is the GPA Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool helps students calculate their semester and cumulative GPA, track academic progress, and plan for their goals. Understanding your GPA is essential for academic success.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Add your courses with credits and grades across multiple semesters. The calculator shows semester GPA, cumulative GPA, and what you need to reach your target GPA.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A student with 14 credits and grades averaging A- achieves a 3.5 GPA. The calculator shows they need 3 more credits at A (4.0) to reach a 3.7 target.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -448,5 +466,6 @@ export default function GPACalculatorClient() {
         </div>
       </div>
     </div>
+    </>
   );
 }

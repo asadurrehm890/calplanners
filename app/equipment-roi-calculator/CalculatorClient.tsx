@@ -219,6 +219,24 @@ export default function EquipmentROICalculator() {
   };
 
   return (
+    <>
+    <div className="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-6 mb-8 border border-amber-200 dark:border-amber-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    📊 What is the Equipment ROI Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool helps businesses calculate the return on investment for equipment purchases. Making informed decisions about capital investments is crucial for business profitability.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Enter equipment details (purchase price, useful life, annual revenue), choose financing options, and the calculator will show ROI, payback period, break-even point, and net profit.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A $25,000 CNC machine generating $15,000 annual revenue pays for itself in 2.3 years and generates $88,000 profit over its 10-year life with a 352% ROI.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -519,5 +537,6 @@ export default function EquipmentROICalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -157,6 +157,24 @@ export default function WeightLossTimeline() {
   };
 
   return (
+    <>
+    <div className="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-6 mb-8 border border-purple-200 dark:border-purple-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    🎯 What is the Weight Loss Timeline Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This calculator helps you plan your weight loss journey with realistic expectations. Understanding how long it takes to reach your goals is crucial for staying motivated.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Enter your current weight, goal weight, weekly loss target, and activity level. The calculator shows total time needed, target date, milestones, and daily calorie recommendations.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A 180lb person wanting to reach 150lb with 1.5lb weekly loss will reach their goal in 20 weeks (5 months) with 1,450 daily calories and 45 minutes of exercise.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -447,5 +465,6 @@ export default function WeightLossTimeline() {
         </div>
       </div>
     </div>
+    </>
   );
 }

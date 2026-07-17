@@ -144,6 +144,25 @@ export default function CandleCalculator() {
   ];
 
   return (
+    <>
+    // Add this component after the header section
+<div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    🕯️ What is the Candle Making Cost Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This calculator helps candle makers determine the true cost of producing their candles. Whether you're a hobbyist selling at craft fairs or a small business owner, knowing your costs is essential for profitable pricing.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Simply add your materials (wax, fragrance, containers, wicks, packaging), set your production parameters, and the calculator will show your total cost, cost per candle, and suggest a selling price based on your desired profit margin.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A candle maker using 8oz of soy wax, 0.8oz of fragrance, and glass jars can instantly see that each candle costs $2.50 to make and should be priced at $4.17 for a 40% profit margin.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -435,5 +454,7 @@ export default function CandleCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
+  
 }

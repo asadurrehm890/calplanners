@@ -132,6 +132,24 @@ export default function FlyTyingEstimator() {
   ];
 
   return (
+    <>
+    <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6 mb-8 border border-green-200 dark:border-green-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    🎣 What is the Fly Tying Material Estimator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool helps fly tiers estimate material costs, track usage, and calculate cost per fly. Whether you're tying flies for personal use or selling them, understanding your material costs is crucial for budgeting and pricing.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Enter your materials (hooks, thread, feathers, beads), set how many flies you want to tie, and the estimator will calculate total costs, cost per fly, and alert you if you'll run out of any materials.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A fly tier making 10 Woolly Buggers with $8.99 hooks, $12.99 feathers, and $6.99 beads can see that each fly costs $2.10 to tie and identify which materials need restocking.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -414,5 +432,6 @@ export default function FlyTyingEstimator() {
         </div>
       </div>
     </div>
+    </>
   );
 }

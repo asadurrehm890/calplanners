@@ -153,6 +153,24 @@ export default function MeetingCostCalculator() {
   };
 
   return (
+    <>
+    <div className="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-6 mb-8 border border-orange-200 dark:border-orange-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    💰 What is the Meeting Cost Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This calculator reveals the true cost of your meetings, including salaries, benefits, overhead, and lost productivity. Many organizations underestimate meeting expenses.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Add participants with their hourly rates, set meeting duration, and include prep/follow-up time. The calculator shows total cost, cost per minute, and participant breakdown.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A 60-minute meeting with 5 participants averaging $85/hour costs $425. The calculator helps identify opportunities to reduce meeting frequency or duration.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -454,5 +472,6 @@ export default function MeetingCostCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -193,6 +193,24 @@ export default function FursuitFurCalculator() {
   };
 
   return (
+    <>
+    <div className="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-6 mb-8 border border-purple-200 dark:border-purple-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    🦊 What is the Fursuit Fur Yardage Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool helps fursuit makers calculate exactly how much fur they need for their projects. Fur is expensive ($25-45 per yard), so accurate estimation saves money and reduces waste.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Add your fursuit parts (head, bodysuit, arms, legs, etc.), set their measurements, and the calculator will show total yardage needed, recommended yardage with waste, and estimated cost.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A fursuit maker building a full suit with head, bodysuit, arms, and legs will see they need 8.5 yards of fur, recommended to buy 10.5 yards with waste, costing approximately $262.50.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -455,5 +473,6 @@ export default function FursuitFurCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }

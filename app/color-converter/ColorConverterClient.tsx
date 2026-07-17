@@ -261,6 +261,24 @@ export default function ColorConverterClient() {
   }, []);
 
   return (
+    <>
+    <div className="bg-fuchsia-50 dark:bg-fuchsia-900/20 rounded-2xl p-6 mb-8 border border-fuchsia-200 dark:border-fuchsia-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    🎨 What is the Color Converter & Palette Generator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool helps designers and developers convert colors between HEX, RGB, HSL, CMYK formats and generate harmonious color palettes for their projects.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Enter any color, and the converter instantly shows all formats. Generate palettes (complementary, analogous, triadic, monochromatic) and save your favorite colors.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      The color #2563eb (Blue) converts to rgb(37, 99, 235), hsl(221, 83%, 53%), and cmyk(84%, 58%, 0%, 8%). The complementary color is #eb4d25 (Orange).
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -532,5 +550,6 @@ export default function ColorConverterClient() {
         </div>
       </div>
     </div>
+    </>
   );
 }

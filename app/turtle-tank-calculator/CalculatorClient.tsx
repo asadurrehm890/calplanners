@@ -187,6 +187,24 @@ export default function TurtleTankCalculator() {
   };
 
   return (
+    <>
+    <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-6 mb-8 border border-emerald-200 dark:border-emerald-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    🐢 What is the Turtle Tank Size Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This calculator helps turtle owners find the perfect tank size for their shelled friend. A properly sized tank is essential for your turtle's health, happiness, and longevity.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Select your turtle species, enter their shell length and number of turtles, and the calculator will recommend the ideal tank size in gallons. It also factors in basking area needs and multiple turtles.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A Red-Eared Slider with a 4-inch shell needs a minimum of 40 gallons, but the calculator recommends 75 gallons for optimal growth and well-being.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -447,5 +465,6 @@ export default function TurtleTankCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }
