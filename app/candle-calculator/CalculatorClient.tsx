@@ -145,7 +145,7 @@ export default function CandleCalculator() {
 
   return (
     <>
-    // Add this component after the header section
+    
 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
   <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
     🕯️ What is the Candle Making Cost Calculator?

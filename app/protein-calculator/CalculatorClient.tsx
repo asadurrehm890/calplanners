@@ -194,6 +194,24 @@ export default function ProteinCalculator() {
   };
 
   return (
+    <>
+    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
+  <h2 className="text-xl font-semibold text-black dark:text-white mb-3">
+    💪 What is the Protein Intake Calculator?
+  </h2>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    This tool helps you calculate your optimal daily protein intake based on your weight, activity level, and fitness goals. Protein is essential for muscle building, weight management, and overall health.
+  </p>
+  <p className="text-zinc-700 dark:text-zinc-300 mb-3">
+    Enter your weight, age, activity level, and goal (maintain, lose, gain, athlete). The calculator provides daily protein needs, per-meal distribution, and meal suggestions.
+  </p>
+  <div className="bg-white dark:bg-zinc-800 rounded-lg p-4 mt-2">
+    <p className="text-sm font-medium text-black dark:text-white">📋 Example:</p>
+    <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      A 180lb moderately active person wanting to build muscle needs 147g of protein daily, approximately 49g per meal across 3 meals.
+    </p>
+  </div>
+</div>
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -489,5 +507,6 @@ export default function ProteinCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }
