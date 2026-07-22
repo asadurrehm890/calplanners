@@ -87,6 +87,8 @@ export default function RootLayout({
             gtag('config', 'G-XJL4T4L5EG');
           `}
         </Script>
+
+        <Script async src="https://quge5.com/88/tag.min.js" data-zone="262641" async data-cfasync="false"></Script>
        
       </head>
       <body className="min-h-full flex flex-col">
