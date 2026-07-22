@@ -88,8 +88,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <Script async src="https://quge5.com/88/tag.min.js" data-zone="262641" data-cfasync="false"></Script>
-       
+        
       </head>
       <body className="min-h-full flex flex-col">
         <Header />
