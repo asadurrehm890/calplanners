@@ -2143,6 +2143,341 @@ export const blogPosts: BlogPost[] = [
       </a>
     </div>
   `
+},
+{
+  id: 13,
+  title: "How to Build a Step-by-Step Crypto Checkout for E-commerce Using NOWPayments API",
+  excerpt: "A complete developer guide to integrating NOWPayments API for accepting cryptocurrency payments in your online store. Step-by-step with code examples.",
+  image: "/nowpayments-blog.jpg",
+  date: "July 26, 2026",
+  readTime: "12 min read",
+  slug: "nowpayments-crypto-checkout-guide",
+  author: "Alex Rivera",
+  authorImage: "/author-alex-rivera.jpg",
+  tags: ["E-commerce", "Crypto Payments", "API Integration", "NOWPayments"],
+  content: `
+    <h2>Introduction</h2>
+    <p>Accepting cryptocurrency payments is no longer optional for modern e-commerce businesses. It's a competitive advantage that opens your store to a global audience with lower fees and faster settlements. <a href="https://account.nowpayments.io/create-account/?link_id=2670900491" target="_blank" rel="noopener noreferrer">NOWPayments</a> provides a simple, non-custodial API to accept 300+ cryptocurrencies with auto coin conversion.</p>
+
+    <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; border: 2px solid #e5e7eb;">
+      <h3 style="margin-top: 0;">💳 Ready to Accept Crypto Payments?</h3>
+      <p style="margin-bottom: 15px;">Sign up with NOWPayments using my referral link and get started with crypto payments today!</p>
+      <a href="https://account.nowpayments.io/create-account/?link_id=2670900491" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 12px 30px; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+        🚀 Sign Up Now →
+      </a>
+    </div>
+
+    <h2>Why NOWPayments?</h2>
+    <p>NOWPayments is a leading non-custodial crypto payment gateway that lets you accept payments in 300+ cryptocurrencies with auto coin conversion supported [citation:8]. The gateway is designed to be simple and fast to integrate, with low fees and no minimum balance required [citation:12].</p>
+
+    <h3>Key Benefits:</h3>
+    <ul>
+      <li><strong>300+ Cryptocurrencies:</strong> Accept Bitcoin, Ethereum, and hundreds more</li>
+      <li><strong>Auto Conversion:</strong> Settle in your preferred currency</li>
+      <li><strong>Non-Custodial:</strong> You control your funds</li>
+      <li><strong>Low Fees:</strong> Competitive processing rates</li>
+      <li><strong>Global Reach:</strong> Accept payments from anywhere in the world</li>
+      <li><strong>Referral Program:</strong> Earn 25% of NOWPayments' commission from every payment your referrals process for 5 years [citation:3]</li>
+    </ul>
+
+    <h2>Prerequisites</h2>
+    <p>Before you start, you'll need:</p>
+    <ul>
+      <li>A <a href="https://account.nowpayments.io/create-account/?link_id=2670900491" target="_blank" rel="noopener noreferrer">NOWPayments merchant account</a></li>
+      <li>API Key from your NOWPayments dashboard</li>
+      <li>IPN (Instant Payment Notification) Secret for webhook verification</li>
+      <li>A server-side language (we'll use Node.js/Express for examples)</li>
+      <li>Basic knowledge of REST APIs and webhooks</li>
+    </ul>
+
+    <h2>Step 1: Get Your API Credentials</h2>
+    <p>After signing up at <a href="https://account.nowpayments.io/create-account/?link_id=2670900491" target="_blank" rel="noopener noreferrer">NOWPayments</a>, follow these steps:</p>
+    <ol>
+      <li><strong>Login</strong> to your NOWPayments dashboard</li>
+      <li><strong>Navigate</strong> to API Integration section</li>
+      <li><strong>Generate</strong> your API Key</li>
+      <li><strong>Copy</strong> your API Key and IPN Secret</li>
+    </ol>
+    <p><em>Note: API keys are always randomly generated and are nearly impossible to crack [citation:12].</em></p>
+
+    <h2>Step 2: Set Up Your Environment</h2>
+    <p>Create a <code>.env</code> file to store your credentials:</p>
+    <pre><code># NOWPayments Configuration
+NOWPAYMENTS_API_KEY=your-api-key-here
+NOWPAYMENTS_IPN_SECRET=your-ipn-secret-here
+NOWPAYMENTS_SANDBOX=true  # Set to false for production</code></pre>
+
+    <h2>Step 3: Install Dependencies</h2>
+    <p>For Node.js/Express projects:</p>
+    <pre><code>npm install express axios cors dotenv</code></pre>
+    <p>For Python projects, you can use the official Python package:</p>
+    <pre><code>pip install nowpayment [citation:8]</code></pre>
+
+    <h2>Step 4: Create the Payment Flow</h2>
+
+    <h3>4.1: Create Invoice Endpoint</h3>
+    <p>This endpoint creates a payment invoice and returns the payment URL [citation:1].</p>
+
+    <pre><code>const axios = require('axios');
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+// Create invoice endpoint
+app.post('/api/create-invoice', async (req, res) => {
+  try {
+    const { price_amount, price_currency, order_id } = req.body;
+
+    const response = await axios.post(
+      'https://api.nowpayments.io/v1/invoice',
+      {
+        price_amount: price_amount,
+        price_currency: price_currency,
+        order_id: order_id,
+        order_description: 'E-commerce order',
+        ipn_callback_url: 'https://your-domain.com/api/webhook',
+        success_url: 'https://your-domain.com/order-success',
+        cancel_url: 'https://your-domain.com/order-cancel',
+        is_fixed_rate: true
+      },
+      {
+        headers: {
+          'x-api-key': process.env.NOWPAYMENTS_API_KEY,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    res.json({
+      invoice_url: response.data.invoice_url,
+      invoice_id: response.data.id
+    });
+
+  } catch (error) {
+    console.error('Error creating invoice:', error);
+    res.status(500).json({ error: 'Failed to create invoice' });
+  }
+});</code></pre>
+
+    <h3>4.2: Webhook Handler (IPN)</h3>
+    <p>The webhook is where the magic happens. NOWPayments sends a POST request to your callback URL when payment status changes. This is your source of truth [citation:1].</p>
+
+    <pre><code>// IPN Webhook handler
+app.post('/api/webhook', async (req, res) => {
+  try {
+    const payload = req.body;
+    
+    // Verify the IPN signature
+    const signature = req.headers['x-nowpayments-sig'];
+    const isVerified = verifySignature(
+      JSON.stringify(payload),
+      signature,
+      process.env.NOWPAYMENTS_IPN_SECRET
+    );
+
+    if (!isVerified) {
+      return res.status(401).send('Invalid signature');
+    }
+
+    // Process different payment statuses
+    switch(payload.payment_status) {
+      case 'finished':
+        // Payment completed successfully
+        await fulfillOrder(payload.order_id);
+        console.log('✅ Order fulfilled:', payload.order_id);
+        break;
+      
+      case 'partially_paid':
+        // Partial payment received
+        console.log('⚠️ Partial payment:', payload);
+        break;
+      
+      case 'confirming':
+        // Payment is being confirmed on blockchain
+        console.log('⏳ Confirming payment:', payload);
+        break;
+      
+      case 'expired':
+        // Payment window expired
+        console.log('❌ Payment expired:', payload);
+        break;
+      
+      case 'failed':
+        // Payment failed
+        console.log('❌ Payment failed:', payload);
+        break;
+      
+      default:
+        console.log('ℹ️ Other status:', payload.payment_status);
+    }
+
+    // Always return 200 to acknowledge receipt
+    res.status(200).send('OK');
+
+  } catch (error) {
+    console.error('Webhook error:', error);
+    res.status(500).send('Webhook error');
+  }
+});
+
+// Helper function to verify signature
+function verifySignature(payload, signature, secret) {
+  const crypto = require('crypto');
+  const expected = crypto
+    .createHmac('sha256', secret)
+    .update(payload)
+    .digest('hex');
+  return signature === expected;
+}</code></pre>
+
+    <p><strong>⚠️ Important:</strong> The callback is your source of truth, not the customer landing back on your success page. A customer can close the tab before redirecting. The callback still arrives [citation:11].</p>
+
+    <h3>4.3: Frontend Integration</h3>
+    <p>In your e-commerce checkout:</p>
+
+    <pre><code>// Checkout function
+async function processCheckout(orderData) {
+  try {
+    // 1. Create invoice
+    const response = await fetch('/api/create-invoice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        price_amount: orderData.total,
+        price_currency: 'USD',
+        order_id: orderData.id
+      })
+    });
+
+    const data = await response.json();
+
+    // 2. Redirect customer to payment page
+    window.location.href = data.invoice_url;
+
+  } catch (error) {
+    console.error('Checkout error:', error);
+    // Show error to customer
+  }
+}</code></pre>
+
+    <h2>Step 5: Handle Payment Statuses</h2>
+    <p>NOWPayments uses these payment statuses [citation:1]:</p>
+
+    <table style="width:100%; border-collapse: collapse; margin: 16px 0;">
+      <thead>
+        <tr style="background: #f3f4f6;">
+          <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Status</th>
+          <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Description</th>
+          <th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;"><code>waiting</code></td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Awaiting payment</td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Show QR code/address</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;"><code>confirming</code></td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Blockchain processing</td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Wait for confirmation</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;"><code>finished</code></td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Payment completed</td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">✅ Fulfill order</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;"><code>expired</code></td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Payment window expired</td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Cancel order</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;"><code>failed</code></td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Payment failed</td>
+          <td style="padding: 8px; border: 1px solid #e5e7eb;">Cancel order</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background: #dbeafe; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #2563eb;">
+      <h4 style="margin-top: 0;">💡 Pro Tip</h4>
+      <p style="margin-bottom: 0;">Fulfill on <code>finished</code> status. Not on <code>confirming</code>, not on the customer hitting your success page. <code>finished</code> is the one that means the money is really yours [citation:11].</p>
+    </div>
+
+    <h2>Step 6: Test in Sandbox</h2>
+    <p>Always test your integration in the NOWPayments Sandbox first. The Sandbox allows you to test any payment case without making real transactions [citation:12].</p>
+
+    <ul>
+      <li><strong>Sandbox Base URL:</strong> <code>https://api-sandbox.nowpayments.io</code></li>
+      <li><strong>Test Coins:</strong> Use testnet coins or coins with low minimums</li>
+      <li><strong>Recommended for Testing:</strong> LTC, TRX, ARK, ZEN, MATIC, XVG, BNB [citation:5]</li>
+    </ul>
+
+    <h3>Check Minimum Amounts</h3>
+    <p>Always check minimum payment amounts before creating invoices [citation:5]:</p>
+
+    <pre><code>// Get minimum amount
+const getMinAmount = async (currencyFrom, currencyTo) => {
+  const response = await axios.get(
+    'https://api.nowpayments.io/v1/min-amount',
+    {
+      params: {
+        currency_from: currencyFrom,
+        currency_to: currencyTo,
+        is_fixed_rate: true
+      },
+      headers: {
+        'x-api-key': process.env.NOWPAYMENTS_API_KEY
+      }
+    }
+  );
+  return response.data.min_amount;
+};</code></pre>
+
+    <h2>Step 7: Deploy to Production</h2>
+    <p>Before going live:</p>
+    <ul>
+      <li><strong>Test thoroughly</strong> with sandbox</li>
+      <li><strong>Verify webhooks</strong> are being received</li>
+      <li><strong>Set <code>sandbox: false</code></strong> in production</li>
+      <li><strong>Monitor</strong> your first few live payments</li>
+      <li><strong>Set up error handling</strong> and alerts</li>
+    </ul>
+
+    <h2>Common Integrations</h2>
+    <p>NOWPayments has been integrated with many platforms:</p>
+    <ul>
+      <li><strong>Vendure:</strong> <code>vendure-plugin-nowpayments</code> [citation:9]</li>
+      <li><strong>WHMCS:</strong> Sheepey integration for hosted checkout [citation:7]</li>
+      <li><strong>Telegram Bots:</strong> Complete e-commerce bot with crypto payments [citation:2]</li>
+      <li><strong>Python Projects:</strong> Official <code>nowpayment</code> package [citation:8]</li>
+    </ul>
+
+    <h2>Monetize Your Integration</h2>
+    <p>Did you know you can earn from referring merchants to NOWPayments? The referral program gives you <strong>25% of NOWPayments' commission</strong> from every payment your referrals process for 5 years, which can be extended to lifetime [citation:3].</p>
+
+    <ul>
+      <li><strong>No cap:</strong> You can refer unlimited merchants</li>
+      <li><strong>Track everything:</strong> Monitor referrals and earnings in your dashboard</li>
+      <li><strong>Withdraw easily:</strong> Minimum payout is 50 USDT</li>
+    </ul>
+
+    <div style="background: #f0fdf4; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; border: 2px solid #bbf7d0;">
+      <h3 style="margin-top: 0; color: #15803d;">🎯 Start Accepting Crypto Payments Today</h3>
+      <p style="margin-bottom: 15px;">Sign up with NOWPayments and get started with crypto payments. Earn 25% of commissions from every merchant you refer!</p>
+      <a href="https://account.nowpayments.io/create-account/?link_id=2670900491" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 12px 30px; background: #22c55e; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s;">
+        🚀 Sign Up Now →
+      </a>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>Integrating NOWPayments for cryptocurrency payments is straightforward and opens your e-commerce store to a global audience. The API is well-documented, the sandbox makes testing easy, and the referral program means you can earn passive income by bringing other merchants onboard.</p>
+
+    <p>Ready to start accepting crypto payments? <a href="https://account.nowpayments.io/create-account/?link_id=2670900491" target="_blank" rel="noopener noreferrer">Sign up now</a> and use my referral link to get started.</p>
+
+    <p>Have questions about the integration? <a href="/contact">Contact me</a> and I'll help you get set up!</p>
+  `
 }
 
 ];
