@@ -16,6 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  // Sort posts in descending order (newest first)
+  const sortedPosts = [...blogPosts].sort((a, b) => {
+    // Sort by date (newest first)
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -29,7 +35,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {blogPosts.map((post) => (
+          {sortedPosts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
