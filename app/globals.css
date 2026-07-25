@@ -29,3 +29,10 @@ body {
 iframe{
   margin: auto;
 }
+
+article pre {
+    background-color: #000;
+    color: white;
+    padding: 1rem;
+    margin: 1rem 0;
+}
