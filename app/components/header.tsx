@@ -7,6 +7,7 @@ import Script from "next/script";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCalculatorsOpen, setIsCalculatorsOpen] = useState(false);
+  const [isCrytoOpen, setIsCryptoOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -36,6 +37,10 @@ export default function Header() {
   { href: "/color-converter", label: "🎨 Color Converter" },
 ];
 
+const crypto=[
+  {href:"/blog/nowpayments-crypto-checkout-guide", label:"Nowpayment Integration"},
+]
+
   return (
     <header className="bg-white dark:bg-black border-b border-zinc-200 dark:border-zinc-800">
      
@@ -55,12 +60,45 @@ export default function Header() {
             <Link href="/" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
               Home
             </Link>
+          
             {/* <Link href="/about" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
               About
             </Link>
             <Link href="/contact" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
               Contact
             </Link> */}
+
+             <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsCryptoOpen(!isCrytoOpen)}
+                className="flex items-center gap-1 text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors font-medium"
+              >
+                Crypto Currency
+                <svg
+                  className={`w-4 h-4 transition-transform ${isCalculatorsOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {isCrytoOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700 py-2 z-50">
+                  {crypto.map((calc) => (
+                    <Link
+                      key={calc.href}
+                      href={calc.href}
+                      onClick={() => setIsCryptoOpen(false)}
+                      className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
+                    >
+                      {calc.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Calculators Dropdown */}
             <div className="relative" ref={dropdownRef}>
