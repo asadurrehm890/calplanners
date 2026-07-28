@@ -18,7 +18,7 @@ export default function PostCard({ post }: PostCardProps) {
     <Link href={`/blog/${post.slug}`}>
       <article className="group relative bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
         {/* Image Container */}
-        <div className="relative h-48 sm:h-56 overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+        <div className="relative h-48 sm:h-65 overflow-hidden bg-zinc-100 dark:bg-zinc-800">
           {/* Placeholder Image */}
           <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold p-5">
             {post.title}
