@@ -38,7 +38,7 @@ export default function Header() {
 ];
 
 const crypto=[
-  {href:"/blog/nowpayments-crypto-checkout-guide", label:"Nowpayment Integration"},
+  {href:"/crypto-exchange-rate", label:"Crypto Exchange Rate"},
 ]
 
   return (
