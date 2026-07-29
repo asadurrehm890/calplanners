@@ -89,6 +89,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
     changeFrequency: 'weekly' as const,
   },
+  {
+    slug: '/crypto-exchange-rate',
+    priority: 0.85,
+    changeFrequency: 'hourly' as const,
+  },
+  {
+    slug: '/crypto-profit-loss',
+    priority: 0.85,
+    changeFrequency: 'daily' as const,
+  },
   ].map((calc) => ({
     url: `${baseUrl}${calc.slug}`,
     lastModified: new Date().toISOString(),

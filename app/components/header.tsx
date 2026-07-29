@@ -38,7 +38,8 @@ export default function Header() {
 ];
 
 const crypto=[
-  {href:"/crypto-exchange-rate", label:"Crypto Exchange Rate"},
+  {href:"/crypto-exchange-rate", label:"📊 Crypto Exchange Rate"},
+  { href: "/crypto-profit-loss", label: "📊 Crypto P/L Calculator" },
 ]
 
   return (
