@@ -37,7 +37,7 @@ export default function CryptoExchangeRateClient() {
   const [amount, setAmount] = useState<number>(1);
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
 
-  // List of supported cryptocurrencies
+  // List of supported cryptocurrencies with CoinGecko IDs
   const cryptoList = [
     { id: "bitcoin", symbol: "BTC", name: "Bitcoin" },
     { id: "ethereum", symbol: "ETH", name: "Ethereum" },
@@ -50,26 +50,47 @@ export default function CryptoExchangeRateClient() {
     { id: "polygon", symbol: "MATIC", name: "Polygon" },
     { id: "litecoin", symbol: "LTC", name: "Litecoin" },
     { id: "uniswap", symbol: "UNI", name: "Uniswap" },
-    { id: "avalanche", symbol: "AVAX", name: "Avalanche" },
+    { id: "avalanche-2", symbol: "AVAX", name: "Avalanche" },
     { id: "shiba-inu", symbol: "SHIB", name: "Shiba Inu" },
     { id: "crypto-com-chain", symbol: "CRO", name: "Crypto.com" },
     { id: "stellar", symbol: "XLM", name: "Stellar" },
   ];
 
-  // Fetch crypto prices
+  // Fallback prices in case API fails (cached from last successful fetch)
+  const [fallbackPrices, setFallbackPrices] = useState<CryptoPrice[]>([]);
+
+  // Fetch crypto prices with fallback
   const fetchPrices = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Using CoinGecko API (free tier, no API key required)
+      // Using CoinGecko API with a timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
       const ids = cryptoList.map(c => c.id).join(',');
       const response = await fetch(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_high=true&include_24hr_low=true&include_market_cap=true&include_24hr_vol=true`
+        `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_high=true&include_24hr_low=true&include_market_cap=true&include_24hr_vol=true`,
+        { 
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json',
+          }
+        }
       );
 
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
-        throw new Error('Failed to fetch prices');
+        // If we have fallback data, use it
+        if (fallbackPrices.length > 0) {
+          setCryptoPrices(fallbackPrices);
+          setError("Using cached data. API may be rate-limited.");
+          setLoading(false);
+          return;
+        }
+        throw new Error(`API returned ${response.status}: ${response.statusText}`);
       }
 
       const data = await response.json();
@@ -90,15 +111,25 @@ export default function CryptoExchangeRateClient() {
         };
       });
 
+      // Save as fallback
+      setFallbackPrices(prices);
       setCryptoPrices(prices);
       setLastUpdated(new Date().toLocaleString());
+      setError(null);
       
       // Update exchange rate
       updateExchangeRate(prices);
 
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch prices');
       console.error('Error fetching crypto prices:', err);
+      
+      // Use fallback data if available
+      if (fallbackPrices.length > 0) {
+        setCryptoPrices(fallbackPrices);
+        setError("Using cached data. Please try again later for live prices.");
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to fetch prices');
+      }
     } finally {
       setLoading(false);
     }
@@ -134,7 +165,6 @@ export default function CryptoExchangeRateClient() {
   const handleFromCurrencyChange = (symbol: string) => {
     setFromCurrency(symbol);
     if (symbol === toCurrency) {
-      // Swap to prevent same currency
       const available = cryptoList.find(c => c.symbol !== symbol);
       if (available) setToCurrency(available.symbol);
     }
@@ -177,6 +207,7 @@ export default function CryptoExchangeRateClient() {
 
   // Format currency
   const formatCurrency = (value: number) => {
+    if (value === 0) return '$0.00';
     if (value >= 1000) {
       return `$${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
     } else if (value >= 1) {
@@ -201,6 +232,9 @@ export default function CryptoExchangeRateClient() {
     return "text-zinc-600 dark:text-zinc-400";
   };
 
+  // Check if all prices are zero (likely API failure)
+  const hasValidPrices = cryptoPrices.some(p => p.price > 0);
+
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -213,6 +247,13 @@ export default function CryptoExchangeRateClient() {
             Real-time cryptocurrency prices and exchange rates. Live updates every 60 seconds.
           </p>
         </div>
+
+        {/* Error Banner */}
+        {error && (
+          <div className={`mb-4 p-4 rounded-xl ${error.includes('cached') ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'}`}>
+            ⚠️ {error}
+          </div>
+        )}
 
         {/* Exchange Rate Converter */}
         <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm mb-6">
@@ -298,7 +339,7 @@ export default function CryptoExchangeRateClient() {
               <button
                 onClick={fetchPrices}
                 disabled={loading}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium disabled:opacity-50"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? '⏳' : '🔄 Refresh'}
               </button>
@@ -314,20 +355,20 @@ export default function CryptoExchangeRateClient() {
               className="w-full px-4 py-2 mb-4 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-800 text-black dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             
-            {error ? (
-              <div className="text-center py-8 text-red-600 dark:text-red-400">
-                ⚠️ {error}
-                <button
-                  onClick={fetchPrices}
-                  className="block mx-auto mt-2 text-blue-600 hover:text-blue-700"
-                >
-                  Try Again
-                </button>
-              </div>
-            ) : loading && cryptoPrices.length === 0 ? (
+            {loading && cryptoPrices.length === 0 ? (
               <div className="text-center py-8 text-zinc-500 dark:text-zinc-400">
                 <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent"></div>
                 <p className="mt-2">Loading prices...</p>
+              </div>
+            ) : !hasValidPrices ? (
+              <div className="text-center py-8 text-zinc-500 dark:text-zinc-400">
+                <p>Unable to load prices. Please try again later.</p>
+                <button
+                  onClick={fetchPrices}
+                  className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
+                  Retry
+                </button>
               </div>
             ) : (
               <div className="overflow-x-auto">
