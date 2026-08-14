@@ -13,6 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 1.0, // Highest priority for homepage
     },
+    {
+      url: `${baseUrl}/product/ai-prompt-bible`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.85,
+    },
     // {
     //   url: `${baseUrl}/about`,
     //   lastModified: new Date().toISOString(),
