@@ -58,8 +58,8 @@ const crypto=[
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
-              Home
+            <Link href="/product/ai-prompt-bible" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
+              AI Prompts
             </Link>
           
             {/* <Link href="/about" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
