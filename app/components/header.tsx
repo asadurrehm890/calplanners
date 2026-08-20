@@ -60,77 +60,11 @@ const crypto=[
           <nav className="hidden md:flex items-center space-x-8">
             
           
-            {/* <Link href="/about" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
-              About
-            </Link>
-            <Link href="/contact" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors">
-              Contact
-            </Link> */}
+           
 
-             <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setIsCryptoOpen(!isCrytoOpen)}
-                className="flex items-center gap-1 text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors font-medium"
-              >
-                Crypto Currency
-                <svg
-                  className={`w-4 h-4 transition-transform ${isCalculatorsOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+           
 
-              {isCrytoOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700 py-2 z-50">
-                  {crypto.map((calc) => (
-                    <Link
-                      key={calc.href}
-                      href={calc.href}
-                      onClick={() => setIsCryptoOpen(false)}
-                      className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
-                    >
-                      {calc.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Calculators Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setIsCalculatorsOpen(!isCalculatorsOpen)}
-                className="flex items-center gap-1 text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors font-medium"
-              >
-                Calculators
-                <svg
-                  className={`w-4 h-4 transition-transform ${isCalculatorsOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {isCalculatorsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700 py-2 z-50">
-                  {calculators.map((calc) => (
-                    <Link
-                      key={calc.href}
-                      href={calc.href}
-                      onClick={() => setIsCalculatorsOpen(false)}
-                      className="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
-                    >
-                      {calc.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+           
           </nav>
 
           {/* Mobile menu button */}
@@ -165,24 +99,7 @@ const crypto=[
                 Contact
               </Link> */}
 
-              {/* Mobile Calculators Section */}
-              <div className="pt-2 border-t border-zinc-200 dark:border-zinc-700">
-                <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2">
-                  Calculators
-                </p>
-                <div className="space-y-2">
-                  {calculators.map((calc) => (
-                    <Link
-                      key={calc.href}
-                      href={calc.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block text-sm text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors pl-2"
-                    >
-                      {calc.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+            
             </nav>
           </div>
         )}
