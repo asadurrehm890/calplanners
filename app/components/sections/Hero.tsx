@@ -2,41 +2,42 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="hero-section">
+    <section className="min-h-screen flex items-center pt-20 bg-gradient-to-br from-white via-white to-blue-50/40">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="flex gap-3 mb-8 flex-wrap">
-              <span className="badge-blue">
-                <i className="fas fa-code mr-1.5"></i> 8+ Years Experience
+            <div className="flex flex-wrap gap-3 mb-8">
+              <span className="badge badge-blue">
+                <i className="fas fa-code mr-1.5"></i> 8+ Years
               </span>
-              <span className="badge-purple">
-                <i className="fas fa-rocket mr-1.5"></i> 15+ Apps Delivered
+              <span className="badge badge-purple">
+                <i className="fas fa-rocket mr-1.5"></i> 15+ Apps Shipped
+              </span>
+              <span className="badge badge-green">
+                <i className="fas fa-check-circle mr-1.5"></i> Shopify Expert
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-              Build Custom <br />
-              <span className="gradient-text">Shopify Apps</span>
-              <br />
-              That Drive Revenue
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 tracking-tight">
+              Custom Shopify Apps <br />
+              <span className="gradient-text">That Drive Revenue</span>
             </h1>
 
             <p className="text-lg text-[#475569] max-w-lg mb-10 leading-relaxed">
               Full-stack developer specializing in Shopify, React, Node, and GraphQL.
-              From live selling to 3D try-on — I build solutions that convert.
+              I build custom apps that solve real business problems and increase sales.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Link href="#contact" className="btn-primary btn-large">
                 <i className="fas fa-paper-plane"></i> Start Your Project
               </Link>
-              <a href="#cases" className="btn-secondary btn-large">
-                View Case Studies
+              <a href="#work" className="btn-secondary btn-large">
+                View My Work
               </a>
             </div>
 
-            <div className="flex gap-12 mt-12">
+            <div className="flex gap-12 mt-12 pt-8 border-t border-gray-100">
               <div>
                 <div className="stat-number">15+</div>
                 <div className="stat-label">Apps Delivered</div>
@@ -53,9 +54,9 @@ export default function Hero() {
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-[2.5rem] p-8 text-white shadow-2xl">
+            <div className="bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-3xl p-8 text-white shadow-2xl">
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center text-2xl">
+                <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl">
                   <i className="fas fa-store"></i>
                 </div>
                 <div>
@@ -63,23 +64,22 @@ export default function Hero() {
                   <p className="text-white/70 text-sm">Full-Stack Development</p>
                 </div>
               </div>
+
               <div className="space-y-3">
-                <div className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5">
-                  <i className="fas fa-check-circle text-[#4ade80]"></i>
-                  <span>Custom Shopify Apps</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5">
-                  <i className="fas fa-check-circle text-[#4ade80]"></i>
-                  <span>React & Node.js</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5">
-                  <i className="fas fa-check-circle text-[#4ade80]"></i>
-                  <span>REST & GraphQL APIs</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5">
-                  <i className="fas fa-check-circle text-[#4ade80]"></i>
-                  <span>WordPress & Laravel</span>
-                </div>
+                {[
+                  { icon: "fa-check-circle", text: "Custom Shopify Apps" },
+                  { icon: "fa-check-circle", text: "React & Node.js" },
+                  { icon: "fa-check-circle", text: "REST & GraphQL APIs" },
+                  { icon: "fa-check-circle", text: "WordPress & Laravel" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5"
+                  >
+                    <i className={`fas ${item.icon} text-emerald-400`}></i>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -8,21 +8,21 @@ export default function Header() {
 
   const navItems = [
     { label: "Services", href: "#services" },
-    { label: "Case Studies", href: "#cases" },
+    { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Blog", href: "#blog" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
       <div className="container">
-        <nav className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="text-xl font-bold">
-            <span className="text-[#0f172a]">Asad</span>
+        <div className="flex items-center justify-between h-16 md:h-20">
+          <Link href="/" className="text-xl font-bold tracking-tight">
+            <span className="text-[#0a0a0f]">Asad</span>
             <span className="text-[#2563eb]">.</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -34,23 +34,23 @@ export default function Header() {
             ))}
             <a
               href="#contact"
-              className="px-5 py-2.5 bg-[#2563eb] text-white rounded-full text-sm font-semibold hover:bg-[#1d4ed8] transition-all shadow-sm hover:shadow-md"
+              className="btn-primary text-sm py-2.5 px-6"
             >
               Let's Talk
             </a>
-          </div>
+          </nav>
 
           <button
-            className="md:hidden text-2xl"
+            className="md:hidden text-2xl text-[#0a0a0f]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
             {isMenuOpen ? "✕" : "☰"}
           </button>
-        </nav>
+        </div>
 
         {isMenuOpen && (
-          <div className="md:hidden pb-4 space-y-3">
+          <div className="md:hidden pb-6 space-y-4">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -63,7 +63,7 @@ export default function Header() {
             ))}
             <a
               href="#contact"
-              className="block text-center px-5 py-2.5 bg-[#2563eb] text-white rounded-full text-sm font-semibold hover:bg-[#1d4ed8] transition-all"
+              className="block text-center btn-primary text-sm py-2.5"
               onClick={() => setIsMenuOpen(false)}
             >
               Let's Talk

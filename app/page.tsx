@@ -1,7 +1,8 @@
 import Hero from "@/app/components/sections/Hero";
 import Services from "@/app/components/sections/Services";
-import CaseStudies from "@/app/components/sections/CaseStudies";
+import Work from "@/app/components/sections/Work";
 import About from "@/app/components/sections/About";
+import Blog from "@/app/components/sections/Blog";
 import Contact from "@/app/components/sections/Contact";
 
 export default function Home() {
@@ -9,8 +10,9 @@ export default function Home() {
     <>
       <Hero />
       <Services />
-      <CaseStudies />
+      <Work />
       <About />
+      <Blog />
       <Contact />
     </>
   );
