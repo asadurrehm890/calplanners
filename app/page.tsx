@@ -1,4 +1,7 @@
 // app/page.tsx
+import { blogPosts } from "@/app/data/posts";
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
