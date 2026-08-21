@@ -1,5 +1,6 @@
 // app/page.tsx
 import { blogPosts } from "@/app/data/posts";
+import { caseStudies } from "@/app/data/caseStudies";
 import Link from "next/link";
 
 export default function Home() {
@@ -154,40 +155,33 @@ export default function Home() {
             Real projects with real impact. Built for burdauea.com, parts4gsm.com, bylaylasaleh.com.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-3xl p-6 border-l-4 border-[#2563eb] shadow-sm">
-              <h4 className="text-xl font-bold">burdauea.com – Live Selling</h4>
-              <span className="inline-block bg-[#e8f0fe] text-[#1a4a8a] text-xs font-bold px-3 py-0.5 rounded-full mt-2 mb-3">Shopify custom app</span>
-              <p className="text-[#475569] text-sm">Admin page to start stream with product selection, real‑time chat, and seamless checkout integration.</p>
-              <div className="flex flex-wrap gap-1 mt-3">
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">React</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">Node</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">Shopify API</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">WebSocket</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-3xl p-6 border-l-4 border-[#2563eb] shadow-sm">
-              <h4 className="text-xl font-bold">parts4gsm.com – Product Importer</h4>
-              <span className="inline-block bg-[#e8f0fe] text-[#1a4a8a] text-xs font-bold px-3 py-0.5 rounded-full mt-2 mb-3">Bulk import</span>
-              <p className="text-[#475569] text-sm">Imported all product fields from Lighthouse CMS including images, variants, metafields, metaobjects.</p>
-              <div className="flex flex-wrap gap-1 mt-3">
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">REST API</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">GraphQL</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">Shopify</span>
-              </div>
-            </div>
-            <div className="bg-white rounded-3xl p-6 border-l-4 border-[#2563eb] shadow-sm">
-              <h4 className="text-xl font-bold">bylaylasaleh.com – 3D Glasses Viewer</h4>
-              <span className="inline-block bg-[#e8f0fe] text-[#1a4a8a] text-xs font-bold px-3 py-0.5 rounded-full mt-2 mb-3">Virtual try-on</span>
-              <p className="text-[#475569] text-sm">Customers try glasses virtually via webcam. Redirect to dedicated page with real‑time overlay.</p>
-              <div className="flex flex-wrap gap-1 mt-3">
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">WebRTC</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">Three.js</span>
-                <span className="bg-gray-100 px-3 py-0.5 rounded-full text-xs font-semibold">Shopify</span>
-              </div>
-            </div>
+            {caseStudies.slice(0, 3).map((study) => (
+              <Link
+                key={study.id}
+                href={`/case-studies/${study.slug}`}
+                className="bg-white rounded-3xl p-6 border-l-4 border-[#2563eb] shadow-sm hover:-translate-y-1 transition-transform block"
+              >
+                <h4 className="text-xl font-bold text-[#0a0a0f]">{study.title}</h4>
+                <span className="inline-block bg-[#e8f0fe] text-[#1a4a8a] text-xs font-bold px-3 py-0.5 rounded-full mt-2 mb-3">
+                  {study.category}
+                </span>
+                <p className="text-[#475569] text-sm">{study.excerpt}</p>
+                <div className="flex flex-wrap gap-1 mt-3">
+                  {study.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="bg-gray-100 px-2 py-0.5 rounded-full text-xs text-[#475569]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <span className="inline-block mt-3 font-semibold text-[#2563eb] hover:underline text-sm">
+                  Read case study <i className="fas fa-arrow-right text-xs"></i>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
 
       {/* Blog */}
       <section id="blog" className="py-12 md:py-16">
