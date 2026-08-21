@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 
@@ -45,10 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
-      </head>  
+    <html lang="en" className={inter.variable}> 
       <body className="font-sans bg-[#f9fafc] text-[#1e293b] antialiased">
         <Header />
         <main>{children}</main>
