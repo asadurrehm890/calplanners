@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Header from "@/app/components/header";
-import Footer from "@/app/components/footer";
-
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,10 +45,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}> 
-      <body className="font-sans bg-[#f9fafc] text-[#1e293b] antialiased">
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans bg-[#f9fafc] text-[#1e293b] antialiased min-h-screen flex flex-col">
         <Header />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
