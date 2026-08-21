@@ -31,12 +31,12 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="section-padding bg-white">
+    <section id="services" className="section-padding">
       <div className="container">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="badge badge-blue mb-4">What I Build</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-            Tailored Shopify Apps
+            Tailored <span className="gradient-text">Shopify Apps</span>
           </h2>
           <p className="text-[#475569] text-lg">
             Every app is custom-built for your store's unique needs. Here are some solutions I've delivered.

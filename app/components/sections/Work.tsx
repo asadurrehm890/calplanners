@@ -51,7 +51,7 @@ export default function Work() {
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="badge badge-purple mb-4">Portfolio</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-            Case Studies
+            Case <span className="gradient-text">Studies</span>
           </h2>
           <p className="text-[#475569] text-lg">
             Real projects with real impact. Built for brands like burdauea.com, parts4gsm.com, and bylaylasaleh.com.
@@ -60,12 +60,12 @@ export default function Work() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {workItems.map((item, index) => (
-            <div key={index} className="card hover:border-[#2563eb]/30">
+            <div key={index} className="card">
               <div className="flex items-start gap-4">
                 <div className={`feature-icon ${colorMap[item.color as keyof typeof colorMap]}`}>
                   <i className={`fas ${item.icon}`}></i>
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-bold">{item.title}</h3>
                   <p className="text-sm text-[#2563eb] font-medium">{item.client}</p>
                 </div>

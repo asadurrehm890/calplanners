@@ -46,7 +46,7 @@ export default function Blog() {
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="badge badge-green mb-4">Insights</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-            Latest Articles
+            Latest <span className="gradient-text">Articles</span>
           </h2>
           <p className="text-[#475569] text-lg">
             Tips, trends, and deep dives from my work in the Shopify ecosystem.
@@ -57,7 +57,7 @@ export default function Blog() {
           {blogPosts.map((post) => (
             <div
               key={post.id}
-              className={`card border-t-4 ${colorMap[post.color as keyof typeof colorMap]} hover:border-[#2563eb]`}
+              className={`card border-t-4 ${colorMap[post.color as keyof typeof colorMap]}`}
             >
               <div className="flex gap-4 text-sm text-[#64748b] mb-3">
                 <span><i className="far fa-calendar-alt mr-1"></i> {post.date}</span>

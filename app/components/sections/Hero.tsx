@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center pt-20 bg-gradient-to-br from-white via-white to-blue-50/40">
+    <section className="min-h-[100dvh] flex items-center pt-20 bg-gradient-to-br from-white via-white to-blue-50/60">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -18,12 +18,14 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 tracking-tight">
-              Custom Shopify Apps <br />
-              <span className="gradient-text">That Drive Revenue</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight">
+              Custom Shopify <br />
+              <span className="gradient-text">Apps That Drive</span>
+              <br />
+              Revenue
             </h1>
 
-            <p className="text-lg text-[#475569] max-w-lg mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl text-[#475569] max-w-lg mb-10 leading-relaxed">
               Full-stack developer specializing in Shopify, React, Node, and GraphQL.
               I build custom apps that solve real business problems and increase sales.
             </p>
@@ -37,7 +39,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="flex gap-12 mt-12 pt-8 border-t border-gray-100">
+            <div className="flex gap-12 mt-12 pt-8 border-t border-gray-200/60">
               <div>
                 <div className="stat-number">15+</div>
                 <div className="stat-label">Apps Delivered</div>
@@ -53,8 +55,8 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-3xl p-8 text-white shadow-2xl">
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-3xl p-8 text-white shadow-2xl max-w-md w-full">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl">
                   <i className="fas fa-store"></i>
@@ -74,7 +76,7 @@ export default function Hero() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5"
+                    className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-3.5 transition-all hover:bg-white/20"
                   >
                     <i className={`fas ${item.icon} text-emerald-400`}></i>
                     <span>{item.text}</span>

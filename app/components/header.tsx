@@ -1,10 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { label: "Services", href: "#services" },
@@ -14,10 +23,19 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100"
+          : "bg-transparent backdrop-blur-none border-transparent"
+      }`}
+    >
       <div className="container">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="text-xl font-bold tracking-tight">
+          <Link
+            href="/"
+            className="text-2xl font-bold tracking-tight transition-colors"
+          >
             <span className="text-[#0a0a0f]">Asad</span>
             <span className="text-[#2563eb]">.</span>
           </Link>
@@ -34,7 +52,7 @@ export default function Header() {
             ))}
             <a
               href="#contact"
-              className="btn-primary text-sm py-2.5 px-6"
+              className="btn-primary text-sm py-2.5 px-6 min-h-0"
             >
               Let's Talk
             </a>
@@ -50,7 +68,7 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden pb-6 space-y-4">
+          <div className="md:hidden pb-6 space-y-4 bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-lg">
             {navItems.map((item) => (
               <a
                 key={item.href}

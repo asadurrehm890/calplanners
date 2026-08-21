@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section id="about" className="section-padding bg-white">
+    <section id="about" className="section-padding">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -31,7 +31,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-4">
             <div className="card p-6">
               <div className="flex items-center gap-4">
                 <div className="feature-icon feature-icon-blue">

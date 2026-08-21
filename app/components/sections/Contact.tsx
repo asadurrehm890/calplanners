@@ -8,7 +8,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus("sending");
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1500));
     setFormStatus("sent");
     setTimeout(() => setFormStatus("idle"), 3000);
   };
@@ -74,41 +74,41 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="form-label text-white/80">Your Name</label>
+                <label className="form-label form-label-dark">Your Name</label>
                 <input
                   type="text"
                   placeholder="John Doe"
                   required
-                  className="input-field bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:bg-white/10"
+                  className="input-field input-field-dark"
                 />
               </div>
               <div>
-                <label className="form-label text-white/80">Email Address</label>
+                <label className="form-label form-label-dark">Email Address</label>
                 <input
                   type="email"
                   placeholder="john@example.com"
                   required
-                  className="input-field bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:bg-white/10"
+                  className="input-field input-field-dark"
                 />
               </div>
             </div>
 
             <div>
-              <label className="form-label text-white/80">Store URL (optional)</label>
+              <label className="form-label form-label-dark">Store URL (optional)</label>
               <input
                 type="text"
                 placeholder="yourstore.myshopify.com"
-                className="input-field bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:bg-white/10"
+                className="input-field input-field-dark"
               />
             </div>
 
             <div>
-              <label className="form-label text-white/80">Project Details</label>
+              <label className="form-label form-label-dark">Project Details</label>
               <textarea
                 rows={5}
                 placeholder="Tell me about your project..."
                 required
-                className="input-field bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:bg-white/10 resize-none min-h-[120px]"
+                className="input-field input-field-dark resize-none min-h-[130px]"
               ></textarea>
             </div>
 
