@@ -192,39 +192,30 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold">Insights & expertise</h2>
           <p className="text-[#475569] max-w-lg mt-2 mb-8">Tips, trends, and deep dives from my work in the Shopify ecosystem.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform">
-              <div className="flex gap-4 text-xs text-[#64748b] mb-2">
-                <span><i className="far fa-calendar-alt mr-1"></i>May 12, 2026</span>
-                <span><i className="far fa-clock mr-1"></i>6 min read</span>
-              </div>
-              <h4 className="text-xl font-bold">Why custom Shopify apps beat off‑the‑shelf</h4>
-              <p className="text-[#475569] text-sm mt-1">Off‑the‑shelf apps can't match the flexibility and performance of a custom‑built solution.</p>
-              <a href="#" className="inline-block mt-3 font-semibold text-[#2563eb] hover:underline">
-                Read more <i className="fas fa-arrow-right text-xs"></i>
-              </a>
-            </div>
-            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform">
-              <div className="flex gap-4 text-xs text-[#64748b] mb-2">
-                <span><i className="far fa-calendar-alt mr-1"></i>April 28, 2026</span>
-                <span><i className="far fa-clock mr-1"></i>4 min read</span>
-              </div>
-              <h4 className="text-xl font-bold">Live selling: the future of e‑commerce</h4>
-              <p className="text-[#475569] text-sm mt-1">How real‑time streaming with chat and instant checkout can boost conversion rates by over 30%.</p>
-              <a href="#" className="inline-block mt-3 font-semibold text-[#2563eb] hover:underline">
-                Read more <i className="fas fa-arrow-right text-xs"></i>
-              </a>
-            </div>
-            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform">
-              <div className="flex gap-4 text-xs text-[#64748b] mb-2">
-                <span><i className="far fa-calendar-alt mr-1"></i>April 10, 2026</span>
-                <span><i className="far fa-clock mr-1"></i>5 min read</span>
-              </div>
-              <h4 className="text-xl font-bold">Bulk imports: overcoming Shopify limitations</h4>
-              <p className="text-[#475569] text-sm mt-1">Learn how to import complex product data seamlessly using custom APIs.</p>
-              <a href="#" className="inline-block mt-3 font-semibold text-[#2563eb] hover:underline">
-                Read more <i className="fas fa-arrow-right text-xs"></i>
-              </a>
-            </div>
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link
+                key={post.id}
+                href={`/blog/${post.slug}`}
+                className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform block"
+              >
+                <div className="flex gap-4 text-xs text-[#64748b] mb-2">
+                  <span><i className="far fa-calendar-alt mr-1"></i>{post.date}</span>
+                  <span><i className="far fa-clock mr-1"></i>{post.readTime}</span>
+                </div>
+                <h4 className="text-xl font-bold text-[#0a0a0f] mb-2">{post.title}</h4>
+                <p className="text-[#475569] text-sm">{post.excerpt}</p>
+                <div className="mt-3 flex flex-wrap gap-1">
+                  {post.tags.slice(0, 2).map((tag) => (
+                    <span key={tag} className="bg-gray-100 px-2 py-0.5 rounded-full text-xs text-[#475569]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <span className="inline-block mt-3 font-semibold text-[#2563eb] hover:underline">
+                  Read more <i className="fas fa-arrow-right text-xs"></i>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
