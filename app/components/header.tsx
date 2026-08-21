@@ -1,112 +1,80 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import Script from "next/script";
+import { useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCalculatorsOpen, setIsCalculatorsOpen] = useState(false);
-  const [isCrytoOpen, setIsCryptoOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsCalculatorsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Calculators list
- const calculators = [
-  { href: "/candle-calculator", label: "🕯️ Candle Calculator" },
-  { href: "/fly-tying-estimator", label: "🎣 Fly Tying Estimator" },
-  { href: "/turtle-tank-calculator", label: "🐢 Turtle Tank Calculator" },
-  { href: "/fursuit-fur-calculator", label: "🦊 Fursuit Fur Calculator" },
-  { href: "/calligraphy-ink-calculator", label: "✒️ Calligraphy Ink Estimator" },
-  { href: "/equipment-roi-calculator", label: "📊 Equipment ROI Calculator" },
-  { href: "/meeting-cost-calculator", label: "💰 Meeting Cost Calculator" },
-  { href: "/protein-calculator", label: "💪 Protein Intake Calculator" },
-  { href: "/weight-loss-timeline", label: "🎯 Weight Loss Timeline" },
-  { href: "/gpa-calculator", label: "📚 GPA Calculator" },
-  { href: "/word-counter", label: "📝 Word Counter" },
-  { href: "/color-converter", label: "🎨 Color Converter" },
-];
-
-const crypto=[
-  {href:"/crypto-exchange-rate", label:"📊 Crypto Exchange Rate"},
-  { href: "/crypto-profit-loss", label: "📊 Crypto P/L Calculator" },
-]
+  const navLinks = [
+    { href: "#services", label: "Services" },
+    { href: "#cases", label: "Case Studies" },
+    { href: "#process", label: "Process" },
+    { href: "#blog", label: "Blog" },
+  ];
 
   return (
-    <header className="bg-white dark:bg-black border-b border-zinc-200 dark:border-zinc-800">
-     
-
-      {/* Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header className="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+      <div className="container">
+        <nav className="flex items-center justify-between py-4">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold text-black dark:text-white">
-              CalPlanners
+          <Link href="/" className="text-2xl font-extrabold">
+            <span className="logo-gradient">Asad</span>
+            <span className="text-secondary">Dev</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8 font-semibold">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[#1e293b] hover:text-secondary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="#contact"
+              className="border-2 border-[#1e293b] px-5 py-2 rounded-full font-semibold hover:bg-[#1e293b] hover:text-white transition-all"
+            >
+              Contact
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            
-          
-           
-
-           
-
-           
-          </nav>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                {isMenuOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-2xl"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? "✕" : "☰"}
+          </button>
+        </nav>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-zinc-200 dark:border-zinc-800">
-            <nav className="flex flex-col space-y-4">
-              <Link href="/" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Home
+          <div className="md:hidden pb-4 space-y-3 font-semibold">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block text-[#1e293b] hover:text-secondary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
               </Link>
-              {/* <Link href="/about" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
-                About
-              </Link>
-              <Link href="/contact" className="text-zinc-700 hover:text-black dark:text-zinc-300 dark:hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Contact
-              </Link> */}
-
-            
-            </nav>
+            ))}
+            <Link
+              href="#contact"
+              className="block border-2 border-[#1e293b] px-5 py-2 rounded-full text-center hover:bg-[#1e293b] hover:text-white transition-all"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </Link>
           </div>
         )}
       </div>
-
-       
-
     </header>
   );
 }

@@ -1,98 +1,57 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";  // ← This is the missing import
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  // 1. TITLE: This is crucial for SEO
   title: {
-    // The 'default' title is used for the homepage
-    default: 'Free Business & Crafting Cost Calculators | CalPlanners',
-    // The 'template' automatically appends your brand name to every other page's title
-    template: '%s | CalPlanners',
+    default: "Custom Shopify App Development | Full-Stack Expert",
+    template: "%s | AsadDev",
   },
-  // 2. DESCRIPTION: The summary shown in search results
-  description: 'A collection of free, easy-to-use calculators to help you price handmade crafts, tie flies, plan meetings, and manage business costs.',
-  // 3. ICONS: Your favicon (optional, but good for branding)
-  icons: {
-    icon: '/favicon.ico',
-  },
-  // 4. ROBOTS: Tells search engines what to index
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-  // 5. OPEN GRAPH: For social media sharing (Facebook, LinkedIn, etc.)
+  description:
+    "Custom Shopify app development with 8+ years expertise. Warranty, live selling, 3D try-on, product importers. Full-stack Shopify & WordPress developer.",
+  keywords:
+    "Shopify app development, custom Shopify apps, Shopify Plus, live selling app, warranty app, 3D glasses viewer, product importer, Shopify REST API, GraphQL, React, Shopify developer",
   openGraph: {
-    title: 'Free Business & Crafting Cost Calculators',
-    description: 'Calculate costs, plan projects, and make smart decisions with our free tools.',
-    url: 'https://calplanners.online',
-    siteName: 'CalPlanners',
-    images: [
-      {
-        url: 'https://calplanners.online/og-image.png', // You'll need to create this image
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
+    title: "Custom Shopify App Development – 8+ Years Full-Stack Expert",
+    description:
+      "Tailored Shopify apps: warranty, live selling, 3D try-on, bulk importers. Built with React, Node, Shopify APIs.",
+    type: "website",
+    url: "https://calplanners.online",
+    siteName: "AsadDev",
   },
-  // 6. TWITTER: For Twitter card optimization
   twitter: {
-    card: 'summary_large_image',
-    title: 'Free Business & Crafting Cost Calculators',
-    description: 'Calculate costs, plan projects, and make smart decisions with our free tools.',
-    images: ['https://calplanners.online/og-image.png'],
+    card: "summary_large_image",
+    title: "Custom Shopify App Development – 8+ Years Full-Stack Expert",
+    description:
+      "Tailored Shopify apps: warranty, live selling, 3D try-on, bulk importers. Built with React, Node, Shopify APIs.",
+  },
+  alternates: {
+    canonical: "https://calplanners.online",
   },
 };
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={inter.variable}>
       <head>
-        {/* Google Analytics Script */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XJL4T4L5EG"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XJL4T4L5EG');
-          `}
-        </Script>
-
-        
-      </head>
-      <body className="min-h-full flex flex-col">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
+      </head>  
+      <body className="font-sans bg-[#f9fafc] text-[#1e293b] antialiased">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
