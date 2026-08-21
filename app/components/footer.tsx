@@ -1,7 +1,8 @@
+// app/components/footer.tsx
 export default function Footer() {
   return (
     <footer className="bg-[#0a0a0f] text-white py-10 mt-auto">
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h4 className="text-lg font-bold mb-3">Asad ur Rehman</h4>
@@ -12,10 +13,26 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm text-white/60">
-              <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-              <li><a href="#work" className="hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#blog" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#work" className="hover:text-white transition-colors">
+                  Case Studies
+                </a>
+              </li>
+              <li>
+                <a href="#blog" className="hover:text-white transition-colors">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-white transition-colors">
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
           <div>

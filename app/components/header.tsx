@@ -1,3 +1,4 @@
+// app/components/header.tsx
 "use client";
 
 import Link from "next/link";
@@ -30,7 +31,7 @@ export default function Header() {
           : "bg-transparent backdrop-blur-none border-transparent"
       }`}
     >
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link
             href="/"
@@ -52,7 +53,7 @@ export default function Header() {
             ))}
             <a
               href="#contact"
-              className="btn-primary text-sm py-2.5 px-6 min-h-0"
+              className="bg-[#0a0a0f] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2563eb] transition-colors"
             >
               Let's Talk
             </a>
@@ -81,7 +82,7 @@ export default function Header() {
             ))}
             <a
               href="#contact"
-              className="block text-center btn-primary text-sm py-2.5"
+              className="block text-center bg-[#0a0a0f] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2563eb] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Let's Talk
