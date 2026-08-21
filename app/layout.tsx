@@ -11,6 +11,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+
 export const metadata: Metadata = {
   title: {
     default: "Custom Shopify App Development | Full-Stack Expert",
