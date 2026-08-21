@@ -13,11 +13,27 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Custom Shopify App Development | Full-Stack Expert",
-    template: "%s | AsadDev",
+    default: "Asad ur Rehman | Full-Stack Shopify Developer",
+    template: "%s | Asad ur Rehman",
   },
   description:
-    "Custom Shopify app development with 8+ years expertise. Warranty, live selling, 3D try-on, product importers. Full-stack Shopify & WordPress developer.",
+    "Full-stack Shopify developer with 8+ years experience. Custom Shopify apps, live selling, 3D try-on, product importers. Expert in React, Node, GraphQL.",
+  keywords:
+    "Shopify developer, Shopify app development, custom Shopify apps, full-stack developer, React, Node.js, GraphQL, WordPress developer",
+  openGraph: {
+    title: "Asad ur Rehman | Full-Stack Shopify Developer",
+    description:
+      "Custom Shopify app development with 8+ years expertise. Live selling, 3D try-on, product importers, warranty apps.",
+    type: "website",
+    url: "https://calplanners.online",
+    siteName: "Asad ur Rehman",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Asad ur Rehman | Full-Stack Shopify Developer",
+    description:
+      "Custom Shopify app development with 8+ years expertise. Live selling, 3D try-on, product importers.",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sans bg-[#f9fafc] text-[#1e293b] antialiased min-h-screen flex flex-col">
+      <body className="font-sans bg-[#f8fafc] text-[#0f172a] antialiased min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

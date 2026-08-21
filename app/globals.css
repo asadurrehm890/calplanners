@@ -2,10 +2,11 @@
 
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --color-primary: #1e293b;
-  --color-secondary: #2d7a4f;
-  --color-secondary-light: #4ca16b;
-  --color-bg: #f9fafc;
+  --color-primary: #0f172a;
+  --color-secondary: #2563eb;
+  --color-secondary-light: #3b82f6;
+  --color-accent: #7c3aed;
+  --color-bg: #f8fafc;
   --color-card: #ffffff;
 }
 
@@ -21,52 +22,77 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: #f9fafc;
-  color: #1e293b;
-  line-height: 1.6;
+  background: var(--color-bg);
+  color: var(--color-primary);
+  line-height: 1.7;
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
-/* Custom utility classes */
+/* Gradient Text */
 .gradient-text {
-  background: linear-gradient(145deg, #2d7a4f, #4ca16b);
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #2563eb);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 4s ease-in-out infinite;
 }
 
-.logo-gradient {
-  background: linear-gradient(145deg, #1e293b, #3b4b5e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-/* Card hover effects */
-.card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-}
-
-/* Section spacing */
+/* Section Spacing */
 section {
-  padding: 4rem 0;
+  padding: 5rem 0;
 }
 
 @media (max-width: 768px) {
   section {
-    padding: 2.5rem 0;
+    padding: 3rem 0;
   }
-  .container {
-    padding: 0 1.25rem;
-  }
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  transform: translateY(-4px);
+}
+
+/* Gradient Background for sections */
+.bg-gradient-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
 }
