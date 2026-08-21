@@ -9,7 +9,7 @@ export default function Hero() {
           <div className="flex-1 min-w-[300px]">
             <div className="flex flex-wrap gap-3 mb-6">
               <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm">
-                <i className="fas fa-check-circle text-secondary mr-1"></i> 8+ years
+                <i className="fas fa-check-circle text-[#2d7a4f] mr-1"></i> 8+ years
               </span>
               <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm">
                 <i className="fas fa-code mr-1"></i> Shopify Expert
@@ -30,7 +30,7 @@ export default function Hero() {
 
             <Link
               href="#contact"
-              className="inline-flex items-center gap-2 bg-[#1e293b] text-white px-8 py-3 rounded-full font-semibold hover:bg-secondary transition-all"
+              className="inline-flex items-center gap-2 bg-[#1e293b] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#2d7a4f] transition-all"
             >
               <i className="fas fa-paper-plane"></i> Start your project
             </Link>

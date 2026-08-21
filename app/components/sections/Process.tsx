@@ -2,7 +2,7 @@ import { processSteps } from "@/app/data/processSteps";
 
 export default function Process() {
   return (
-    <section id="process" className="py-16">
+    <section id="process">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold mb-3">How it works</h2>
         <p className="text-gray-600 max-w-2xl mb-10">A transparent, collaborative process from idea to launch.</p>

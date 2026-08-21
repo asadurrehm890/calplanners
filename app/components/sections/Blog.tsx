@@ -3,7 +3,7 @@ import { blogPosts } from "@/app/data/blogPosts";
 
 export default function Blog() {
   return (
-    <section id="blog" className="py-16">
+    <section id="blog">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold mb-3">Insights & expertise</h2>
         <p className="text-gray-600 max-w-2xl mb-10">
@@ -21,7 +21,7 @@ export default function Blog() {
               <p className="text-gray-600 text-sm">{post.excerpt}</p>
               <Link
                 href={`/blog/${post.slug}`}
-                className="inline-flex items-center gap-1 text-secondary font-semibold mt-4 hover:gap-2 transition-all"
+                className="inline-flex items-center gap-1 text-[#2d7a4f] font-semibold mt-4 hover:gap-2 transition-all"
               >
                 Read more <i className="fas fa-arrow-right text-sm"></i>
               </Link>

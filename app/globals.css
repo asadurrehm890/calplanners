@@ -21,8 +21,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--color-bg);
-  color: var(--color-primary);
+  background: #f9fafc;
+  color: #1e293b;
   line-height: 1.6;
 }
 
@@ -47,15 +47,6 @@ body {
   background-clip: text;
 }
 
-/* Smooth transitions */
-.transition-all-200 {
-  transition: all 0.2s ease;
-}
-
-.transition-all-300 {
-  transition: all 0.3s ease;
-}
-
 /* Card hover effects */
 .card-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -64,4 +55,18 @@ body {
 .card-hover:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Section spacing */
+section {
+  padding: 4rem 0;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 2.5rem 0;
+  }
+  .container {
+    padding: 0 1.25rem;
+  }
 }

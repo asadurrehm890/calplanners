@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Header from "@/app/components/header";
-import Footer from "@/app/components/footer";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
-
 
 export const metadata: Metadata = {
   title: {
@@ -19,25 +18,6 @@ export const metadata: Metadata = {
   },
   description:
     "Custom Shopify app development with 8+ years expertise. Warranty, live selling, 3D try-on, product importers. Full-stack Shopify & WordPress developer.",
-  keywords:
-    "Shopify app development, custom Shopify apps, Shopify Plus, live selling app, warranty app, 3D glasses viewer, product importer, Shopify REST API, GraphQL, React, Shopify developer",
-  openGraph: {
-    title: "Custom Shopify App Development – 8+ Years Full-Stack Expert",
-    description:
-      "Tailored Shopify apps: warranty, live selling, 3D try-on, bulk importers. Built with React, Node, Shopify APIs.",
-    type: "website",
-    url: "https://calplanners.online",
-    siteName: "AsadDev",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Custom Shopify App Development – 8+ Years Full-Stack Expert",
-    description:
-      "Tailored Shopify apps: warranty, live selling, 3D try-on, bulk importers. Built with React, Node, Shopify APIs.",
-  },
-  alternates: {
-    canonical: "https://calplanners.online",
-  },
 };
 
 export default function RootLayout({

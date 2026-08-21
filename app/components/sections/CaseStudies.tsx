@@ -2,7 +2,7 @@ import { caseStudies } from "@/app/data/caseStudies";
 
 export default function CaseStudies() {
   return (
-    <section id="cases" className="py-16">
+    <section id="cases">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold mb-3">Case studies</h2>
         <p className="text-gray-600 max-w-2xl mb-10">
@@ -11,7 +11,7 @@ export default function CaseStudies() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {caseStudies.map((study, index) => (
-            <div key={index} className="bg-white rounded-[28px] p-6 border-l-4 border-secondary shadow-sm">
+            <div key={index} className="bg-white rounded-[28px] p-6 border-l-4 border-[#2d7a4f] shadow-sm">
               <h4 className="text-xl font-bold">{study.title}</h4>
               <span className="inline-block bg-[#e9f3ef] text-[#1e4b33] text-xs font-bold px-3 py-0.5 rounded-full mt-2 mb-3">
                 {study.label}
