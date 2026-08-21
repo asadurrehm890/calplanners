@@ -22,8 +22,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--color-bg);
-  color: var(--color-primary);
+  background: #f8fafc;
+  color: #0f172a;
   line-height: 1.7;
 }
 
@@ -48,7 +48,7 @@ body {
   50% { background-position: 100% 50%; }
 }
 
-/* Section Spacing */
+/* Section Spacing - INCREASED */
 section {
   padding: 5rem 0;
 }
@@ -57,9 +57,12 @@ section {
   section {
     padding: 3rem 0;
   }
+  .container {
+    padding: 0 1.25rem;
+  }
 }
 
-/* Card Styles */
+/* Card Styles - IMPROVED */
 .card {
   background: white;
   border-radius: 1.5rem;
@@ -74,25 +77,195 @@ section {
   transform: translateY(-4px);
 }
 
-/* Gradient Background for sections */
-.bg-gradient-section {
-  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
+/* Buttons - NEW & IMPROVED */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
   background: #2563eb;
-  border-radius: 40px;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
 }
 
-::-webkit-scrollbar-thumb:hover {
+.btn-primary:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #2563eb;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.2);
+}
+
+.btn-secondary:active {
+  transform: translateY(0px);
+}
+
+.btn-large {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+}
+
+/* Form Inputs - IMPROVED */
+.input-field {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #60a5fa;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.input-field-light {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  color: #0f172a;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.input-field-light::placeholder {
+  color: #94a3b8;
+}
+
+.input-field-light:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+/* Badges */
+.badge-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 1rem;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.badge-purple {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 1rem;
+  background: rgba(124, 58, 237, 0.1);
+  color: #7c3aed;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Hero Section - IMPROVED SPACING */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #eef2ff 100%);
+}
+
+/* Stats */
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 5rem 0;
+}
+
+.contact-card {
+  background: #0f172a;
+  border-radius: 2.5rem;
+  padding: 3rem;
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 2rem;
+  }
+}
+
+/* Tech Stack Tags */
+.tech-tag {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.tech-tag:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
 }
